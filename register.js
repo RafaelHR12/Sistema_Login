@@ -1,7 +1,7 @@
 document.getElementById("registerForm").addEventListener("submit", async (e) => {
     e.preventDefault();
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+    const username = document.getElementById("register-username").value;
+    const password = document.getElementById("register-password").value;
 
     try {
         const response = await fetch('http://localhost:8081/register', {
@@ -12,7 +12,6 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
             body: JSON.stringify({ username, password }),
         });
 
-        // Verifique se a resposta é válida antes de tentar convertê-la
         if (!response.ok) {
             throw new Error('Erro no servidor');
         }
@@ -20,7 +19,7 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
         const data = await response.json();
         if (data.success) {
             alert("Cadastro realizado com sucesso!");
-            window.location.href = "/login.html"; // Redireciona para a página de login
+            window.location.assign('/login.html');
         } else {
             alert(data.message || "Erro ao cadastrar!");
         }
